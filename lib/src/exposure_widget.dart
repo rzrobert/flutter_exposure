@@ -51,7 +51,7 @@ class _ExposureState extends State<Exposure> {
   DateTime? _exposeDate;
   double _scrollOffset = 0.0;
   Axis direction = Axis.vertical;
-  late StreamSubscription _scrollNotificationSubscription;
+  StreamSubscription? _scrollNotificationSubscription;
   bool _subscribed = false;
 
   @override
@@ -68,7 +68,8 @@ class _ExposureState extends State<Exposure> {
   @override
   void dispose() {
     widget.exposureController?._removeState(this);
-    _scrollNotificationSubscription.cancel();
+    _scrollNotificationSubscription?.cancel();
+    _scrollNotificationSubscription = null;
     super.dispose();
   }
 
@@ -150,7 +151,8 @@ class _ExposureState extends State<Exposure> {
         widget.onExpose.call();
         _recordExposeTime();
         if (widget.exposureOnce) {
-          _scrollNotificationSubscription.cancel();
+          _scrollNotificationSubscription?.cancel();
+          _scrollNotificationSubscription = null;
         }
         return;
       }
@@ -174,7 +176,8 @@ class _ExposureState extends State<Exposure> {
   void reCheckExposeState() {
     state = ScrollState.invisible;
     show = false;
-    _scrollNotificationSubscription.cancel();
+    _scrollNotificationSubscription?.cancel();
+    _scrollNotificationSubscription = null;
     subscribeScrollNotification(context);
     trackWidgetPosition();
   }
