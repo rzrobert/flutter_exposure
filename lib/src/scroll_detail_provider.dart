@@ -1,7 +1,14 @@
+/*
+ * @Author: renzheng
+ * @Date: 2023-11-13 19:27:34
+ * @LastEditors: renzheng
+ * @LastEditTime: 2023-11-15 14:24:53
+ * @Description: 
+ */
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_exposure/src/scroll_notification_publisher.dart';
+import 'scroll_notification_publisher.dart';
 
 class ScrollDetailProvider extends StatefulWidget {
   const ScrollDetailProvider({
